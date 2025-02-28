@@ -1,0 +1,6 @@
+#!/command/execlineb
+
+foreground {
+    runblock 1 echo
+}
+runblock -r 1
