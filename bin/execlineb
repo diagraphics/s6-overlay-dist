@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+script="$1"
+shift
+
+cat $script | docker compose exec -T s6-overlay-dist sh -c '
+    export PATH=/command:$PATH
+    exec execlineb /dev/stdin "$@"
+' "$@"
