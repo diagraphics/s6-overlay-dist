@@ -1,5 +1,10 @@
 version: '3.8'
 services:
   s6-overlay-dist:
-    build: .
+    build:
+      context: .
+      args:
+        - S6_OVERLAY_VERSION
+        - S6_DOWNLOAD_PREFIX
+        - S6_BASE_IMAGE
     image: ghcr.io/diagraphics/s6-overlay-dist:dev
