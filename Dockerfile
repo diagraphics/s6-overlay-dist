@@ -2,7 +2,7 @@
 
 FROM busybox AS fetch
 
-ARG S6_OVERLAY_VERSION=3.1.5.0
+ARG S6_OVERLAY_VERSION=3.2.0.2
 ARG S6_DOWNLOAD_PREFIX=https://github.com/just-containers/s6-overlay/releases/download
 
 WORKDIR /tmp
