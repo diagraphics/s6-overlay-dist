@@ -1,0 +1,9 @@
+#!/command/execlineb -p
+
+importas -D 0 exitcode 1
+emptyenv -P
+foreground
+{
+    redirfd -w 1  /run/s6-linux-init-container-results/exitcode echo ${exitcode}
+}
+/run/s6/basedir/bin/halt
