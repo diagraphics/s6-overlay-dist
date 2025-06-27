@@ -1,4 +1,5 @@
 #!/command/execlineb -p
+# shellcheck disable=all
 
 importas -D 0 exitcode 1
 emptyenv -P

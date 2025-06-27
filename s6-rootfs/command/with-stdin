@@ -1,0 +1,28 @@
+#! /usr/bin/env bash
+
+if [[ "$1" != "-r" || -z "$2" ]]; then
+    echo "Usage: $0 -r <number> prog..."
+    exit 1
+fi
+
+fd=$2; shift 2
+
+# Validate that fd is an integer between 3 and 9
+if ! [[ "$fd" =~ ^[3-9]$ ]]; then
+    echo "Error: fd must be an integer between 3 and 9."
+    exit 1
+fi
+
+tmp=$(mktemp) || exit
+eval "exec $fd<>$tmp"
+rm -f -- "$tmp" || exit
+
+# shellcheck disable=SC2086
+cat >&$fd
+
+"$@"
+exit_code="$?"
+
+exec {fd}>&-
+
+exit "$exit_code"
