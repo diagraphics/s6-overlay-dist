@@ -1,0 +1,10 @@
+#!/command/execlineb -S0
+# shellcheck disable=SC1000-SC9999
+
+ifelse { getpid -E -P PID eltest ${PID} -eq 1 } { /init $@ }
+unshare --pid
+trap -x
+{
+    SIGUSR1 { echo "SIGUSR1 received" }
+}
+unshare --mount-proc /init $@
